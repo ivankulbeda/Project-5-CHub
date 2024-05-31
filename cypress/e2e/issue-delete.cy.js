@@ -38,7 +38,6 @@ describe('Issue deletion cancellation', () => {
     cy.get('[data-testid="modal:issue-details"]')
       .should('be.visible')
       .within(() => {
-        // Click the first trash icon found within the modal
         cy.get('[data-testid="icon:trash"]').first().should('be.visible').click();
       });
 
