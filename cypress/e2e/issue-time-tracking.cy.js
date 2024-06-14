@@ -38,7 +38,7 @@ describe('Issue create', () => {
     cy.get('input[placeholder="Number"]').first().should('be.visible').should('have.value', '');
   });
 
-  it('Need to create and delete the log in time', () => {
+  it.only('Need to create and delete the logged time', () => {
 
     cy.get('[data-testid="modal:issue-create"]').within(() => {
       cy.get('.ql-editor').type('Time tracking estimation');
@@ -74,14 +74,16 @@ describe('Issue create', () => {
       cy.get('[data-testid="icon:stopwatch"]').should('be.visible').click();
 
       cy.contains('div', 'Time spent (hours)')
-          .parent()
-          .find('input[placeholder="Number"]')
-          .clear();
+      .parent()
+      .find('input[placeholder="Number"]')
+      .should('have.value', '4')
+      .clear();
 
-          cy.contains('div', 'Time remaining (hours)')
-          .parent()
-          .find('input[placeholder="Number"]')
-          .clear();
+    cy.contains('div', 'Time remaining (hours)')
+      .parent()
+      .find('input[placeholder="Number"]')
+      .should('have.value', '10')
+      .clear();
       cy.contains('button', 'Done').click();
   });
 });
